@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Train Scheduler</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+	<!-- Firebase Reference -->
+	<script src="https://www.gstatic.com/firebasejs/3.7.0/firebase.js"></script>
+	<!-- jQuery Reference -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+	<div class="container bg-primary text-center text-white py-3 mb-3">
+		<h1>Anytime is Train Time</h1>
+		<h6>Cho Choo. Chee Chee.</h6>
+	</div>
+	<div class="container px-0">
+		<div class="card mb-3">
+			<h5 class="card-header bg-primary text-white md-5">Current Train Schedule</h5>
+			<div class="card-body">
+			<table class="table table-hover">
+				<thead>
+				<tr>
+				  <th scope="col">Train Name</th>
+				  <th scope="col">Desitination</th>
+				  <th scope="col">Frequency (min)</th>
+				  <th scope="col">Next Arrival</th>
+				  <th scope="col">Minutes Away</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr>
+				  <td>Trenton Express</td>
+				  <td>Trenton</td>
+				  <td>25</td>
+				  <td>05:35PM</td>
+				  <td>10</td>
+				</tr>
+				<tr>
+				  <td>Oregon Trail</td>
+				  <td>Salem, Oregon</td>
+				  <td>3600</td>
+				  <td>01:39PM</td>
+				  <td>1154</td>
+				</tr>
+				<tr>
+				  <td>Midnight Carriage</td>
+				  <td>Philadelphia</td>
+				  <td>15</td>
+				  <td>05:35PM</td>
+				  <td>10</td>
+				</tr>
+				</tbody>
+			</table>
+			</div>
+		</div>
+	</div>
+	<div class="container  px-0">
+		<div class="card mb-3">
+			<h5 class="card-header text-white bg-primary">Current Train Schedule</h5>
+			<div class="card-body">
+				<form>
+					<div class="form-group">
+					<label for="exampleInputEmail1" class= "font-weight-bold">Train Name</label>
+					<input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+					</div>
+					<div class="form-group">
+					<label for="exampleInputPassword1" class= "font-weight-bold">Destination</label>
+					<input type="password" class="form-control" id="exampleInputPassword1">
+					</div>
+					<div class="form-group">
+					<label for="exampleCheck1" class= "font-weight-bold">First Train Time (HH:mm - military time)</label>
+					<input type="password" class="form-control" id="exampleCheck1">
+					</div>
+					<div class="form-group">
+					<label for="exampleInputPassword1" class= "font-weight-bold">Frequency (min)</label>
+					<input type="password" class="form-control" id="exampleInputPassword1">
+					</div>
+					<button type="submit" class="btn btn-primary">Submit</button>
+					</form>
+				</div>
+			</div>
+		</div>
+
+	
+
+	<script src="logic.js"></script>
+
+</body>
+</html>
