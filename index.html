@@ -7,7 +7,8 @@
 	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 
 	<!-- Firebase Reference -->
-	<script src="https://www.gstatic.com/firebasejs/3.7.0/firebase.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
+		
 	<!-- jQuery Reference -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
@@ -32,11 +33,11 @@
 				</thead>
 				<tbody>
 				<tr>
-				  <td>Trenton Express</td>
-				  <td>Trenton</td>
-				  <td>25</td>
-				  <td>05:35PM</td>
-				  <td>10</td>
+				  <td id="trainname-display"></td>
+				  <td id="destination-display"></td>
+				  <td id="frequency-display"></td>
+				  <td id="arrivaltime-display"></td>
+				  <td id="minaway-display"></td>
 				</tr>
 				<tr>
 				  <td>Oregon Trail</td>
@@ -63,30 +64,28 @@
 			<div class="card-body">
 				<form>
 					<div class="form-group">
-					<label for="exampleInputEmail1" class= "font-weight-bold">Train Name</label>
-					<input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+					<label for="trainname-input" class= "font-weight-bold">Train Name</label>
+					<input type="text" class="form-control" id="trainname-input" aria-describedby="emailHelp">
 					</div>
 					<div class="form-group">
-					<label for="exampleInputPassword1" class= "font-weight-bold">Destination</label>
-					<input type="password" class="form-control" id="exampleInputPassword1">
+					<label for="destination-input" class= "font-weight-bold">Destination</label>
+					<input type="text" class="form-control" id="destination-input">
 					</div>
 					<div class="form-group">
-					<label for="exampleCheck1" class= "font-weight-bold">First Train Time (HH:mm - military time)</label>
-					<input type="password" class="form-control" id="exampleCheck1">
+					<label for="firsttraintime-input" class= "font-weight-bold">First Train Time (HH:mm - military time)</label>
+					<input data-format=" hh:mm" type="text" class="form-control" id="arrivaltime-input">
 					</div>
 					<div class="form-group">
-					<label for="exampleInputPassword1" class= "font-weight-bold">Frequency (min)</label>
-					<input type="password" class="form-control" id="exampleInputPassword1">
+					<label for="frequency-input" class= "font-weight-bold">Frequency (min)</label>
+					<input type="number" class="form-control" id="frequency-input">
 					</div>
-					<button type="submit" class="btn btn-primary">Submit</button>
-					</form>
-				</div>
+					<button type="submit" class="btn btn-primary" id="add-train">Submit</button>
+				</form>
 			</div>
 		</div>
+	</div>
 
-	
-
-	<script src="logic.js"></script>
+	<script type="text/javascript" src="assets/javascript/logic.js"></script>
 
 </body>
 </html>
