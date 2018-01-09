@@ -19,8 +19,38 @@ firebase.initializeApp(config);
   var arrival = 0;
   var minaway = 0;
 
+
   // Create a variable to reference the database
   var database = firebase.database();
+
+  function startTime() {
+    var now = new Date();
+    var h = now.getHours();
+    var m = now.getMinutes();
+    var s = now.getSeconds();
+    m = checkTime(m);
+    s = checkTime(s);
+
+    //we want time in regular time, not military so need to check for am/pm and change hours
+    if (h > 12) {
+      h = h - 12;
+      var y = "PM";
+    }
+
+    else {
+      var y = "AM";
+      
+    }
+
+    // $("#timer").html(h + ":" + m);
+    document.getElementById("timer").innerHTML =  h + ":" + m + ":" + s + y;
+    var t = setTimeout(startTime, 500);
+  }
+
+  function checkTime(i) {
+      if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+      return i;
+  }
 
   // Capture Button Click
   $("#add-train").on("click", function() {
@@ -28,7 +58,7 @@ firebase.initializeApp(config);
     event.preventDefault();
 
 
-    // Code in the logic for storing and retrieving the most recent user.
+    // Code in the logic for storing and retrieving the most recent train information
     train = $("#trainname-input").val().trim();
     destination = $("#destination-input").val().trim();
     frequency = $("#frequency-input").val().trim();
@@ -65,3 +95,8 @@ firebase.initializeApp(config);
   })
 
   // Create Error Handling
+
+  // function(errorObject) {
+  // console.log("The read failed: " + errorObject.code);
+  // }
+
