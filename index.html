@@ -11,6 +11,10 @@
 		
 	<!-- jQuery Reference -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	
+	<!-- Moment.js Reference -->
+    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+
 </head>
 <body onload="startTime()">
 	<div class="container bg-primary text-center text-white py-3 mb-3">
@@ -23,7 +27,7 @@
 		<div class="card mb-3">
 			<h5 class="card-header bg-primary text-white md-5">Current Train Schedule</h5>
 			<div class="card-body">
-			<table class="table table-hover">
+			<table class="table table-hover" id="train-table">
 				<thead>
 				<tr>
 				  <th scope="col">Train Name</th>
@@ -34,27 +38,13 @@
 				</tr>
 				</thead>
 				<tbody>
-				<tr>
-				  <td id="trainname-display"></td>
-				  <td id="destination-display"></td>
-				  <td id="frequency-display"></td>
-				  <td id="arrivaltime-display"></td>
-				  <td id="minaway-display"></td>
-				</tr>
-				<tr>
-				  <td>Oregon Trail</td>
-				  <td>Salem, Oregon</td>
-				  <td>3600</td>
-				  <td>01:39PM</td>
-				  <td>1154</td>
-				</tr>
-				<tr>
-				  <td>Midnight Carriage</td>
-				  <td>Philadelphia</td>
-				  <td>15</td>
-				  <td>05:35PM</td>
-				  <td>10</td>
-				</tr>
+					<!-- <tr>
+					  <td id="trainname-display"></td>
+					  <td id="destination-display"></td>
+					  <td id="frequency-display"></td>
+					  <td id="arrivaltime-display"></td>
+					  <td id="minaway-display"></td> -->
+					</tr>
 				</tbody>
 			</table>
 			</div>
@@ -74,8 +64,8 @@
 					<input type="text" class="form-control" id="destination-input">
 					</div>
 					<div class="form-group">
-					<label for="firsttraintime-input" class= "font-weight-bold">First Train Time (HH:mm - military time)</label>
-					<input data-format=" hh:mm" type="text" class="form-control" id="arrivaltime-input">
+					<label for="firsttime-input" class= "font-weight-bold">First Train Time (HH:mm - military time)</label>
+					<input data-format=" hh:mm" type="text" class="form-control" id="firsttime-input">
 					</div>
 					<div class="form-group">
 					<label for="frequency-input" class= "font-weight-bold">Frequency (min)</label>
