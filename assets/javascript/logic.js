@@ -11,14 +11,14 @@ var config = {
 firebase.initializeApp(config);
 
   //not explained the you need to do inital values of variables first
-  var train = "";
-  var destination = "";
-  //not sure how to do time in javascript
-  var time = 0;
-  var frequency = 0;
-  var nextArrival = 0;
-  var minutesAway = "";
-  var firstTime = "";
+  // var train = "";
+  // var destination = "";
+  // //not sure how to do time in javascript
+  // var time = 0;
+  // var frequency = 0;
+  // var nextArrival = 0;
+  // var minutesAway = "";
+  // var firstTime = "";
 
 
   // Create a variable to reference the database
@@ -59,22 +59,29 @@ firebase.initializeApp(config);
     event.preventDefault();
 
     // Code in the logic for storing and retrieving the most recent train information
-    train = $("#trainname-input").val().trim();
-    destination = $("#destination-input").val().trim();
-    frequency = $("#frequency-input").val().trim();
-    firstTime = $("#firsttime-input").val().trim();
+    var train = $("#trainname-input").val().trim();
+    var destination = $("#destination-input").val().trim();
+    var frequency = $("#frequency-input").val().trim();
+    var firstTime = $("#firsttime-input").val().trim();
     
     // Don't forget to provide initial data to your Firebase database. - set replaces old data
     //if you want to add more users than just the latest one, then use push
     //database.ref().set({
-    database.ref().push({
+    var trainInfo = { 
       formtrain: train,
       formdestination: destination,
       formfrequency: frequency,
       formfirsttime: firstTime,
       dateAdded: firebase.database.ServerValue.TIMESTAMP
+    };
       //this is added so we can get most resent user so we can get most recent user to brower and to do this we need to change the listener  
-    })
+    database.ref().push(trainInfo);
+
+    console.log(trainInfo.formtrain);
+    console.log(trainInfo.formdestination);
+    console.log(trainInfo.formfrequency);
+    console.log(trainInfo.formfirsttime);
+    console.log(trainInfo.dateAdded);
 
     // Alert
     alert("Train was successfully added");
@@ -84,22 +91,18 @@ firebase.initializeApp(config);
     $("#destination-input").val("");
     $("#frequency-input").val("");
     $("#firsttime-input").val("");
-
-    
-      
+  
   });
 
 
   // Firebase watcher + initial loader HINT: .on("value")
   // database.ref().orderByChild("dateAdded").limitToLast(1).on("child_added", function(snapshot) {
   database.ref().on("child_added", function(childSnapshot, prevChildKey) {  
-    //determine Next Arrival
-    // Assumptions
-    // var tFrequency = 3;
-
-    // // Time is 3:30 AM
-    // var firstTime = "03:30";
-
+    var train = childSnapshot.val().formtrain;
+    var destination = childSnapshot.val().formdestination;
+    var frequency = childSnapshot.val().formfrequency;
+    var firstTime = childSnapshot.val().formfirsttime;
+  
     // First Time (pushed back 1 year to make sure it comes before current time)
     var firstTimeConverted = moment(firstTime, "hh:mm").subtract(1, "years");
     console.log(firstTimeConverted);
@@ -124,7 +127,7 @@ firebase.initializeApp(config);
     var nextArrival = moment().add(minutesAway, "minutes").format("hh:mm a");
     console.log("ARRIVAL TIME: " + moment(nextArrival).format("hh:mm a"));
 
-    //determin Minutes Away
+    //determine Minutes Away
 
     //want to push to table to add new train 
     //add new table row
@@ -132,11 +135,7 @@ firebase.initializeApp(config);
     // Add each train's data into the table row
   $("#train-table > tbody").append("<tr><td>" + train + "</td><td>" + destination + "</td><td>" +
   frequency + "</td><td>" + nextArrival + "</td><td>" + minutesAway + "</td></tr>");
-  // $("#trainname-display").append(snapshot.val().formtrain);
-  // $("#destination-display").append(snapshot.val().formdestination);
-  // $("#frequency-display").append(snapshot.val().formfrequency);
-  // $("#arrivaltime-display").append(nextArrival);
-  // $("#minaway-display").append(minutesAway);
+  
   console.log(childSnapshot.val().formtrain);
   console.log(childSnapshot.val().formdestination);
   console.log(childSnapshot.val().formfrequency);
