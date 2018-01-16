@@ -103,15 +103,12 @@ database.ref().on("child_added", function(childSnapshot, prevChildKey) {
   $("#train-table > tbody").append("<tr><td>" + train + "</td><td>" + destination + "</td><td>" +
   frequency + "</td><td>" + nextArrival + "</td><td>" + minutesAway + "</td></tr>");
 
-  // console.log(childSnapshot.val().formtrain);
-  // console.log(childSnapshot.val().formdestination);
-  // console.log(childSnapshot.val().formfrequency);
-  // console.log(nextArrival);
-  // console.log(minutesAway);
     
   // var t = setTimeout(startTime, 500);
 })
 
+//I want to update time of minutesAway and nextArrival 
+//I am not sure how to call the previous function and use the setInterval or setTimeout to update the time in that function, so once each train is called and time passes then this function empties the table body and pulls each train and redoes the math
 // Update minutes away by triggering change in firebase children
 function timeUpdater() {
   //empty tbody before appending new information
