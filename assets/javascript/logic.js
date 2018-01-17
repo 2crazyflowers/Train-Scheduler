@@ -71,11 +71,13 @@ database.ref().on("child_added", function(childSnapshot, prevChildKey) {
   var firstTimeConverted = moment(firstTime, "hh:mm").subtract(1, "years");
   console.log(firstTimeConverted);
 
-  // Current Time
+  //determine Current Time
   var currentTime = moment();
   console.log("CURRENT TIME: " + moment(currentTime).format("hh:mm a"));
-  // $("#timer").html(h + ":" + m);
+
+  //get timer functioning
   $("#timer").text(currentTime.format("hh:mm a"));
+
   // Difference between the times
   var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
   console.log("DIFFERENCE IN TIME: " + diffTime);
@@ -84,16 +86,15 @@ database.ref().on("child_added", function(childSnapshot, prevChildKey) {
   var tRemainder = diffTime % frequency;
   console.log("Remainder: " + tRemainder);
 
-  // Minutes Away
+  //determine Minutes Away
   var minutesAway = frequency - tRemainder;
   console.log("MINUTES TILL TRAIN: " + minutesAway);
 
-  // Next Train Arrival
+  //determine Next Train Arrival
   var nextArrival = moment().add(minutesAway, "minutes").format("hh:mm a");
   console.log("ARRIVAL TIME: " + moment(nextArrival).format("hh:mm a"));
 
-  //determine Minutes Away
-
+  
   //want to push to table to add new train 
   //add new table row
   //add new train information into row
@@ -103,9 +104,12 @@ database.ref().on("child_added", function(childSnapshot, prevChildKey) {
   $("#train-table > tbody").append("<tr><td>" + train + "</td><td>" + destination + "</td><td>" +
   frequency + "</td><td>" + nextArrival + "</td><td>" + minutesAway + "</td></tr>");
 
-    
   // var t = setTimeout(startTime, 500);
-})
+
+// If any errors are experienced, log them to console.
+}, function(errorObject) {
+  console.log("The read failed: " + errorObject.code);
+});
 
 //I want to update time of minutesAway and nextArrival 
 //I am not sure how to call the previous function and use the setInterval or setTimeout to update the time in that function, so once each train is called and time passes then this function empties the table body and pulls each train and redoes the math
@@ -155,7 +159,7 @@ function timeUpdater() {
   })
 };
 
-setInterval(timeUpdater, 15000);
+setInterval(timeUpdater, 6000);
 
 // Create Error Handling
 
