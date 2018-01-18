@@ -101,7 +101,7 @@ database.ref().on("child_added", function(childSnapshot, prevChildKey) {
   // Add each train's data into the table row
 
   //adds back updated information
-  $("#train-table > tbody").append("<tr><td>" + train + "</td><td>" + destination + "</td><td>" +
+  $("#train-table > tbody").append("<tr><td>" + '<i class="fa fa-trash" id="trashcan" aria-hidden="true"></i>' + "</td><td>" + train + "</td><td>" + destination + "</td><td>" +
   frequency + "</td><td>" + nextArrival + "</td><td>" + minutesAway + "</td></tr>");
 
   // var t = setTimeout(startTime, 500);
@@ -109,6 +109,15 @@ database.ref().on("child_added", function(childSnapshot, prevChildKey) {
 // If any errors are experienced, log them to console.
 }, function(errorObject) {
   console.log("The read failed: " + errorObject.code);
+});
+
+
+//on click for deleting row if trash can is clicked
+//this on click did not work, did some research and found another option
+// $(".fa-trash").on("click", function() {
+$("body").on("click", ".fa-trash", function() {
+  $(this).closest("tr").remove(); 
+  alert("delete button clicked");
 });
 
 //I want to update time of minutesAway and nextArrival 
@@ -153,7 +162,7 @@ function timeUpdater() {
   //add new table row
   //add new train information into row
   // Add each train's data into the table row
-  $("#train-table > tbody").append("<tr><td>" + train + "</td><td>" + destination + "</td><td>" +
+  $("#train-table > tbody").append("<tr><td>" + '<i class="fa fa-trash" aria-hidden="true"></i>' + "</td><td>" + train + "</td><td>" + destination + "</td><td>" +
   frequency + "</td><td>" + nextArrival + "</td><td>" + minutesAway + "</td></tr>");
 
   })

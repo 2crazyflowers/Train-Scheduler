@@ -1,10 +1,13 @@
 Train Scheduler
 Project Overview
-This project was an assignment in the U of M FullStack Bootcamp. I created a train schedule application that incorporates Firebase to host arrival and departure data. The app retrieves and manipulates this information with Moment.js. The website provides up-to-date information about various trains, namely their arrival times and how many minutes remain until they arrive at their station. 
+This project was an assignment in the U of M FullStack Coding Program. I created a train schedule application that incorporates Firebase to host train data including: first train time, frequency of train, train name and destination. A user can submit this information on the application and it is saved to Firebase. The application retrieves and manipulates this information with the help of Moment.js. The website provides up-to-date information about the various trains including: their name, destination, frequency, arrival times and how many minutes remain until they arrive at their station. The application does update the current time and the arrival time and minutes to arrival on its own with out refreshing the screen. I have added delete buttons on the table rows and it will allow the user to delete that row, however, I have not figured out how to have that information get deleted in Firebase so it does not reapper when the time changes and all the information gets pulled again from Firebase.
+
+Issues
+My code to get the information to update feels clunky as I basically am calling another function to run again, but could not figure out how to just recall that function in a setInterval. So I created another new function called timeUpdater to call the information again from Firebase, redo the time calculations with Moment.js and then reload the table with the new information. I would like to learn how to call this function with a setInterval - this is repeating and not clean.
+The other issue is how to get the delete button to delete the train information in Firebase, so it does not get called again when the time changes.
 
 Getting Started
-??These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. ??So they should fork it to their own github page??
-The site is deployed at https://2crazyflowers.github.io/Train-Scheduler/. You can use this to see the trains that are already set up in Firebase. You have to refresh the page to update the minutes to arrival and the next arrival time. You can enter new train information below the Current Train Schedule, in the Add New Train Information card. Once you enter the information and submit, it will add the new train to the Current Train Schedule. 
+The site is deployed at https://2crazyflowers.github.io/Train-Scheduler/. You can use this to see the trains that are already set up in Firebase. You can enter new train information below the Current Train Schedule, in the Add New Train Information card. Once you enter the information and submit, it will add the new train to the Current Train Schedule. 
 
 Prerequisites
 There are no prerequisite softwares that you need to install to run this application. This application is deployed in GitHub.
@@ -14,17 +17,11 @@ Bootstrap - To do basic css
 Firebase - to store train name, train frequency and train start time
 Moment.js - This pulls the data from Firebase and manipulates the data to give next train arrival time and minutes away
 
-??Please read CONTRIBUTING.md for details on our code of conduct, and the process for submitting pull requests to us.
-
 Author
-Sara Bracewell - bulk of work - 2crazyflowers/github. email: bracewell.sara@gmail.com
-See also the list of contributors who participated in this project.
-
-License
-??This project is licensed under the MIT License - see the LICENSE.md file for details
+Sara Bracewell - 2crazyflowers/github. email: bracewell.sara@gmail.com
 
 Acknowledgments/Contributors
-Thanks to Amin Kedir for assistance with ?? the getting the setting up the object so it updates correctly. 
+Thanks to Amin Kedir for assistance getting the setting up the object so it updated upon page refresh. 
 
 
 # Train-Scheduler Assigment 
